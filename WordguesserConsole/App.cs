@@ -25,7 +25,7 @@
         {
             SecretWord sc = new SecretWord(w, '*');
             Console.WriteLine("The length of the word is " + sc.Length);
-            while (sc.IsGuessed == false)
+            while ( ! sc.IsGuessed )
             {
                 Console.Write(sc.ToString());
                 Console.Write(" Used: [" + sc.UsedChars + "]. Enter: ");

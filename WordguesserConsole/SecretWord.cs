@@ -9,23 +9,26 @@
     {
 
         private string m_content;
+           // the string to hide
         private bool[] guessed;
-           // guessed[i] indicates if the i'th item is guessed
+           // guessed[i] indicates if the i'th char is guessed
         private char m_hiddenChar;
+           // the char to use for chars not guessed
         private int noGuess = 0;
-        private List<char> m_guessedChars;
+           // the number of guesses
+        private string m_guessedChars = "";
+           // the guesses - without duplicates
 
         /**
          * 
          * @param content is the string hidden in the secret word
-         * @param hiddenChar is the char to show a not guessed char in the content
+         * @param hiddenChar is the char to show a not guessed char
          */
         public SecretWord(string content, char hiddenChar)
         {
             m_content = content;
             m_hiddenChar = hiddenChar;
             guessed = new bool[content.Length];
-            m_guessedChars = new List<char>();
         }
 
         /**
@@ -37,7 +40,7 @@
             noGuess++;
 
             if (!m_guessedChars.Contains(ch))
-                m_guessedChars.Add(ch);
+                m_guessedChars += ch;
 
             for (int i = 0; i < m_content.Length; i++)
                 if (m_content[i] == ch)
@@ -88,9 +91,9 @@
         }
 
 
-        public string UsedChars
+        public string UsedChars 
         {
-            get { return String.Join(", ", m_guessedChars); }
+            get { return m_guessedChars; }
         }
 
     }

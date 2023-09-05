@@ -5,13 +5,13 @@ namespace WordguesserConsole
     {
 
 
-        string[] m__words;
-        Random randomizer;
+        string[] m_words;
+        Random m_random;
 
         public RandomWords()
         {
-            randomizer = new Random();
-            m__words = new string[] { "Skanderborg",
+            m_random = new Random();
+            m_words = new string[] { "Skanderborg",
                                       "Silkeborg",
                                       "Grenå",
                                       "Horsens",
@@ -27,8 +27,8 @@ namespace WordguesserConsole
 
         public string GetNext()
         {
-            int idx = randomizer.Next(m__words.Length);
-            return m__words[idx];
+            int idx = m_random.Next(m_words.Length);
+            return m_words[idx];
         }
 
         public string GetHint() {
