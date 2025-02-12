@@ -76,7 +76,7 @@
          * @return the secret word with a m_hiddenChar on all positions
          * where a not guessed char occur.
          */
-        public override string ToString()
+        public string AsString()
         {
             string res = "";
             for (int i = 0; i < guessed.Length; i++)

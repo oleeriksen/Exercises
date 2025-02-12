@@ -28,7 +28,7 @@
             Console.WriteLine("The length of the word is " + sc.Length);
             while ( ! sc.IsGuessed )
             {
-                Console.Write(sc.ToString());
+                Console.Write(sc.AsString());
                 Console.Write(" Used: [" + sc.UsedChars + "]. Enter: ");
                 char input = Console.ReadLine()[0];
                 sc.Guess(input);
