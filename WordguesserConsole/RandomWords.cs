@@ -3,8 +3,6 @@ namespace WordguesserConsole
 {
     class RandomWords
     {
-
-
         string[] m_words;
         Random m_random;
 
