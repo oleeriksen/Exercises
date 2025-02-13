@@ -29,6 +29,9 @@
             m_content = content;
             m_hiddenChar = hiddenChar;
             guessed = new bool[content.Length];
+            for (int i = 0; i < m_content.Length; i++)
+                if (m_content[i] == ' ')
+                    guessed[i] = true;
         }
 
         /**
@@ -37,13 +40,14 @@
          */
         public void Guess(char ch)
         {
+            
             noGuess++;
 
             if (!m_guessedChars.Contains(ch))
                 m_guessedChars += ch;
 
             for (int i = 0; i < m_content.Length; i++)
-                if (m_content[i] == ch)
+                if (Match(m_content[i], ch))
                     guessed[i] = true;
         }
 
@@ -94,6 +98,11 @@
         public string UsedChars 
         {
             get { return m_guessedChars; }
+        }
+
+        private bool Match(char ch1, char ch2)
+        {
+            return ch1.ToString().Equals(ch2.ToString(), StringComparison.CurrentCultureIgnoreCase);
         }
 
     }

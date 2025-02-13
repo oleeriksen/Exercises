@@ -12,7 +12,13 @@
             bool goOn = true;
             while (goOn)
             {
-                goOn = OneGame(randomWords.GetNext());
+                if (randomWords.MoreWords)
+                  goOn = OneGame(randomWords.GetNext());
+                else
+                {
+                    Console.WriteLine("No more words...bye");
+                    goOn = false;
+                }
             }
 
         }
@@ -31,7 +37,11 @@
                 Console.Write(sc.AsString());
                 Console.Write(" Used: [" + sc.UsedChars + "]. Enter: ");
                 char input = Console.ReadLine()[0];
-                sc.Guess(input);
+                if (sc.UsedChars.Contains(input))
+                {
+                    Console.WriteLine($"Du HAR gættet på {input}...");
+                } else
+                    sc.Guess(input);
             }
 
             Console.WriteLine("You guessed " + w + "! Using only " + sc.NoGuesses + " guesses!");
