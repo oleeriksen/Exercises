@@ -3,91 +3,94 @@
 /**
 * Represent a secret word. You can guess on a secret word, and you can
 * get it with not guessed chars as *'s.
-* @author oe
 */
 public class SecretWord
 {
 
-    private string m_content;
+    private string mContent;
     // the string to hide
+    
     private bool[] guessed;
     // guessed[i] indicates if the i'th char is guessed
-    private char m_hiddenChar;
+    
+    private char mHiddenChar;
     // the char to use for chars not guessed
+    
     private int noGuess = 0;
     // the number of guesses
-    private string m_guessedChars = "";
+    
+    private string mGuessedChars = "";
     // the guesses - without duplicates
 
-    /**
-     *
-     * @param content is the string hidden in the secret word
-     * @param hiddenChar is the char to show a not guessed char
-     */
-    public SecretWord(string content, char hiddenChar)
+    /// <summary>
+    /// </summary>
+    /// <param name="content">the secret word to guess</param>
+    /// <param name="hiddenChar">to char to show for not guessed chars</param>
+    public SecretWord(string content, char hiddenChar = '*')
     {
-        m_content = content;
-        m_hiddenChar = hiddenChar;
+        mContent = content;
+        mHiddenChar = hiddenChar;
         guessed = new bool[content.Length];
     }
 
-    /**
-     * Make a guess. The secret word keeps the number of guesses done
-     * @param ch the char guessed
-     */
+    /// <summary>
+    /// Make a guess.
+    /// </summary>
+    /// <param name="ch">the guess</param>
     public void Guess(char ch)
     {
         noGuess++;
 
-        if (!m_guessedChars.Contains(ch))
-            m_guessedChars += ch;
+        if (!mGuessedChars.Contains(ch))
+            mGuessedChars += ch;
 
-        for (int i = 0; i < m_content.Length; i++)
-            if (m_content[i] == ch)
+        for (int i = 0; i < mContent.Length; i++)
+            if (mContent[i] == ch)
                 guessed[i] = true;
     }
 
-    /**
-     * @return how many guesses done
-     */
+    
     public int NoGuesses => noGuess;
 
-    /**
-     * @return true iff all char are guessed
-     */
+    /// <summary>
+    /// True if the whole word is guessed
+    /// </summary>
     public bool IsGuessed
     {
         get
         {
-            for (int i = 0; i < guessed.Length; i++)
-                if (!guessed[i]) return false;
+            foreach (bool g in guessed)
+                if (!g) return false;
             return true;
         }
     }
 
-    public int Length => m_content.Length; 
+    public int Length => mContent.Length; 
         
 
-    /**
-     *
-     * @return the secret word with a m_hiddenChar on all positions
-     * where a not guessed char occur.
-     */
+    /// <summary>
+    /// Compute a printable version of the secret word
+    /// </summary>
+    /// <returns>The secret word with a special char for all positions
+    /// that are not guessed yet</returns>
     public string AsString()
     {
         string res = "";
         for (int i = 0; i < guessed.Length; i++)
         {
             if (guessed[i])
-                res += m_content[i];
+                res += mContent[i];
             else
-                res += m_hiddenChar;
+                res += mHiddenChar;
                 
         }
         return res;
     }
 
 
-    public string UsedChars => m_guessedChars;
+    /// <summary>
+    /// All the chars that is used so far
+    /// </summary>
+    public string UsedChars => mGuessedChars;
 
 }

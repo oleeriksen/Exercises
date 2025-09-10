@@ -2,30 +2,35 @@
 
 public class App
 {
-    RandomWords randomWords = new RandomWords();
-        
+    private RandomWords randomWords = new();
+    
+    /// <summary>
+    /// Execute the wordguesser game
+    /// </summary>
     public void Run()
     {
         Console.WriteLine("Welcome to Word Guesser");
-        Console.WriteLine("Hint: " + randomWords.Hint);
+        Console.WriteLine($"Hint: {randomWords.Hint}");
         bool goOn = true;
         while (goOn)
         {
-            string wordToGuess = randomWords.GetNext();
+            string wordToGuess = randomWords.GetNext;
             goOn = OneGame(wordToGuess);
         }
+        Console.WriteLine("Terminating the game...");
     }
 
-    /**
-     * Execute one game
-     * @param w - the word to guess.
-     * Return true if we should continue
-     */
+
+    /// <summary>
+    /// Execute one game
+    /// </summary>
+    /// <param name="w">the word to guess</param>
+    /// <returns>true if we should continue</returns>
     private bool OneGame(string w)
     {
         SecretWord sc = new SecretWord(w, '*');
         Console.WriteLine($"The length of the word is {sc.Length}");
-        while ( ! sc.IsGuessed )
+        while (!sc.IsGuessed)
         {
             Console.Write(sc.AsString());
             Console.Write($" Used: {sc.UsedChars}. Enter: ");
@@ -33,7 +38,7 @@ public class App
             sc.Guess(input);
         }
 
-        Console.WriteLine("You guessed " + w + "! Using only " + sc.NoGuesses + " guesses!");
+        Console.WriteLine($"You guessed {w}! Used only {sc.NoGuesses} guesses!");
         Console.WriteLine("Continue ? (Y/N)");
         string answer = Console.ReadLine();
         return answer.ToLower() == "y"; 

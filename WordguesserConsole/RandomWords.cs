@@ -3,8 +3,8 @@ namespace WordguesserConsole;
 
 class RandomWords
 {
-    string[] m_words;
-    Random m_random;
+    private string[] m_words;
+    private Random m_random;
 
     public RandomWords()
     {
@@ -26,10 +26,16 @@ class RandomWords
         ];
     }
 
-    public string GetNext()
+    /// <summary>
+    /// get a next random word
+    /// </summary>
+    public string GetNext 
     {
-        int idx = m_random.Next(m_words.Length);
-        return m_words[idx];
+        get
+        {
+            int idx = m_random.Next(m_words.Length);
+            return m_words[idx];
+        }
     }
 
     public string Hint => "Byer i omegnen af Aarhus";
