@@ -1,11 +1,4 @@
-﻿namespace WordguesserConsole;
-class Program
-{
-    static void Main(string[] args)
-    {
-        App a = new App();
+﻿using WordguesserConsole;
 
-        a.Run();
-    }
-}
-
+App a = new App();
+a.Run();
